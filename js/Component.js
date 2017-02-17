@@ -18,19 +18,22 @@ class Component {
 			return new CheckboxComponent(options);
 
 		case "date":
-			return new DateComponent(options);
+			return new InputComponent("date", options);
 
 		case "email":
-			return new EmailComponent(options);
+			return new InputComponent("email", options);
 
 		case "radio":
 			return new RadioComponent(options);
+
+		case "range":
+			return new InputComponent("range", options);
 
 		case "select":
 			return new SelectComponent(options);
 
 		case "url":
-			return new URLComponent(options);
+			return new InputComponent("url", options);
 
 		default:
 			return null;
