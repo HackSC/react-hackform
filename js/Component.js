@@ -1,39 +1,39 @@
 class Component {
-	constructor(options) {
+	constructor(data) {
 		this._listeners = new Map;
 
 		this._element = document.createElement("div");
 		this._element.classList.add("component");
 
-		if (options.description) {
-			this._element.appendChild(document.createElement("p")).textContent = options.description;
+		if (data.description) {
+			this._element.appendChild(document.createElement("p")).textContent = data.description;
 
-			options.description = null;
+			data.description = null;
 		}
 	}
 
-	static create(type, options) {
+	static create(type, data) {
 		switch (type) {
 		case "checkbox":
-			return new CheckboxComponent(options);
+			return new CheckboxComponent(data);
 
 		case "date":
-			return new InputComponent("date", options);
+			return new InputComponent("date", data);
 
 		case "email":
-			return new InputComponent("email", options);
+			return new InputComponent("email", data);
 
 		case "radio":
-			return new RadioComponent(options);
+			return new RadioComponent(data);
 
 		case "range":
-			return new InputComponent("range", options);
+			return new InputComponent("range", data);
 
 		case "select":
-			return new SelectComponent(options);
+			return new SelectComponent(data);
 
 		case "url":
-			return new InputComponent("url", options);
+			return new InputComponent("url", data);
 
 		default:
 			return null;

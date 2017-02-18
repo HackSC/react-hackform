@@ -1,26 +1,26 @@
 class SelectComponent extends Component {
-	constructor(options) {
-		super(options);
+	constructor(data) {
+		super(data);
 
 		this._element.classList.add("select");
 
 		let labelElement = null;
-		if (options.label) {
+		if (data.label) {
 			labelElement = this._element.appendChild(document.createElement("label"));
-			labelElement.textContent = options.label;
+			labelElement.textContent = data.label;
 
-			options.label = null;
+			data.label = null;
 		}
 
 		this._selectElement = (labelElement || this._element).appendChild(document.createElement("select"));
 		this._selectElement.addEventListener("change", event => this._valueChanged(this.value));
 
-		for (let option of options.options)
+		for (let option of data.options)
 			this._applyAttributes(this._selectElement.appendChild(document.createElement("option")), option);
 
-		options.options = null;
+		data.options = null;
 
-		this._applyAttributes(this._selectElement, options);
+		this._applyAttributes(this._selectElement, data);
 	}
 
 	get value() {

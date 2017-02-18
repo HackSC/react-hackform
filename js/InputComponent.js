@@ -1,22 +1,22 @@
 class InputComponent extends Component {
-	constructor(type, options) {
-		super(options);
+	constructor(type, data) {
+		super(data);
 
 		this._element.classList.add(type);
 
 		let labelElement = null;
-		if (options.label) {
+		if (data.label) {
 			labelElement = this._element.appendChild(document.createElement("label"));
-			labelElement.textContent = options.label;
+			labelElement.textContent = data.label;
 
-			options.label = null;
+			data.label = null;
 		}
 
 		this._inputElement = (labelElement || this._element).appendChild(document.createElement("input"));
 		this._inputElement.type = type;
 		this._inputElement.addEventListener("change", event => this._valueChanged(this.value));
 
-		this._applyAttributes(this._inputElement, options);
+		this._applyAttributes(this._inputElement, data);
 	}
 
 	get value() {
