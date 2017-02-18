@@ -72,7 +72,8 @@ class Component {
 
 	_applyAttributes(element, attributes) {
 		for (let key in attributes) {
-			if (attributes[key] !== null)
+			let type = typeof attributes[key];
+			if (type === "string" || type === "number" || type === "boolean")
 				element.setAttribute(key, attributes[key]);
 		}
 	}
