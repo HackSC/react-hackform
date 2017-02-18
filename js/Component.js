@@ -10,12 +10,15 @@ class Component {
 
 			data.description = null;
 		}
+
+		this._inputContainer = this._element.appendChild(document.createElement("div"));
+		this._inputContainer.classList.add("input-container");
 	}
 
 	static create(type, data) {
 		switch (type) {
 		case "checkbox":
-			return new CheckboxComponent(data);
+			return new TickComponent("checkbox", data);
 
 		case "date":
 			return new InputComponent("date", data);
@@ -24,7 +27,7 @@ class Component {
 			return new InputComponent("email", data);
 
 		case "radio":
-			return new RadioComponent(data);
+			return new TickComponent("radio", data);
 
 		case "range":
 			return new InputComponent("range", data);

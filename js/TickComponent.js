@@ -1,15 +1,13 @@
-class RadioComponent extends Component {
-	constructor(data) {
+class TickComponent extends Component {
+	constructor(type, data) {
 		super(data);
 
-		this._element.classList.add("radio");
-
-		let containerElement = this._element.appendChild(document.createElement("div"));
+		this._element.classList.add(type);
 
 		this._inputs = data.options.map(option => {
 			let labelElement = null;
 			if (option.label) {
-				labelElement = containerElement.appendChild(document.createElement("label"));
+				labelElement = this._inputContainer.appendChild(document.createElement("label"));
 				labelElement.textContent = option.label;
 
 				option.label = null;
@@ -18,8 +16,8 @@ class RadioComponent extends Component {
 			if (!option.name) // Radio buttons allow multiple selections unless they all have the same "name".
 				option.name = data.name;
 
-			let inputElement = (labelElement || containerElement).appendChild(document.createElement("input"));
-			inputElement.type = "radio";
+			let inputElement = (labelElement || this._inputContainer).appendChild(document.createElement("input"));
+			inputElement.type = type;
 			inputElement.addEventListener("change", event => this._valueChanged(this.value));
 			this._applyAttributes(inputElement, option);
 
@@ -28,10 +26,11 @@ class RadioComponent extends Component {
 	}
 
 	get value() {
-		for (let input of this._inputs) {
+		return this._inputs.reduce((current, input) => {
 			if (input.checked)
-				return input.value;
-		}
-		return null;
+				current.push(input.value)
+
+			return current;
+		}, []);
 	}
 }

@@ -6,13 +6,13 @@ class SelectComponent extends Component {
 
 		let labelElement = null;
 		if (data.label) {
-			labelElement = this._element.appendChild(document.createElement("label"));
+			labelElement = this._inputContainer.appendChild(document.createElement("label"));
 			labelElement.textContent = data.label;
 
 			data.label = null;
 		}
 
-		this._selectElement = (labelElement || this._element).appendChild(document.createElement("select"));
+		this._selectElement = (labelElement || this._inputContainer).appendChild(document.createElement("select"));
 		this._selectElement.addEventListener("change", event => this._valueChanged(this.value));
 
 		for (let option of data.options)
