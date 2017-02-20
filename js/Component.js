@@ -26,6 +26,9 @@ class Component {
 		case "email":
 			return new InputComponent("email", data);
 
+		case "file":
+			return new InputComponent("file", data);
+
 		case "radio":
 			return new TickComponent("radio", data);
 
