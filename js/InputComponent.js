@@ -14,8 +14,8 @@ class InputComponent extends Component {
 
 		this._inputElement = (labelElement || this._inputContainer).appendChild(document.createElement("input"));
 		this._inputElement.type = type;
-		this._inputElement.addEventListener("change", event => this._valueChanged(this.value));
-
+		this._applyInputListener(this._inputElement);
+		this._applyChangeListener(this._inputElement);
 		this._applyAttributes(this._inputElement, data);
 	}
 

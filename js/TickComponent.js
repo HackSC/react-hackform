@@ -13,12 +13,12 @@ class TickComponent extends Component {
 				option.label = null;
 			}
 
-			if (!option.name) // Radio buttons allow multiple selections unless they all have the same "name".
+			if (!option.hasOwnProperty("name")) // Radio buttons allow multiple selections unless they all have the same "name".
 				option.name = data.name;
 
 			let inputElement = (labelElement || this._inputContainer).appendChild(document.createElement("input"));
 			inputElement.type = type;
-			inputElement.addEventListener("change", event => this._valueChanged(this.value));
+			this._applyChangeListener(inputElement);
 			this._applyAttributes(inputElement, option);
 
 			return inputElement;

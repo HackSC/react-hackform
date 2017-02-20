@@ -60,7 +60,7 @@ class Component {
 		listeners.add(listener);
 	}
 
-	dispatchEventToListeners(eventType, eventData) {
+	_dispatchEventToListeners(eventType, eventData) {
 		let listeners = this._listeners.get(eventType)
 		if (!listeners)
 			return;
@@ -69,8 +69,16 @@ class Component {
 			listener({target: this, data: eventData});
 	}
 
-	_valueChanged(event) {
-		this.dispatchEventToListeners(Component.Event.ValueChanged, event);
+	_applyChangeListener(element) {
+		element.addEventListener("change", event => {
+			this._dispatchEventToListeners(Component.Event.ValueChanged, this.value);
+		});
+	}
+
+	_applyInputListener(element) {
+		element.addEventListener("input", event => {
+			this._dispatchEventToListeners(Component.Event.ValueInput, this.value);
+		});
 	}
 
 	_applyAttributes(element, attributes) {
@@ -84,4 +92,5 @@ class Component {
 
 Component.Event = {
 	ValueChanged: "component-value-changed",
+	ValueInput: "component-value-input",
 };

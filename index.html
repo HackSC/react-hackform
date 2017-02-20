@@ -7,9 +7,28 @@
 
 <script>
 
-const JSON = {};
+function generate(string) {
+	let json = JSON.parse(string);
+	if (!json)
+		return;
 
+	let formElement = document.body.appendChild(document.createElement("form"));
+	formElement.setAttribute("action", json.action);
+	formElement.setAttribute("method", json.method);
+	formElement.setAttribute("enctype", "multipart/form-data");
 
+	for (let item of json.items) {
+		let type = item.type;
+		item.type = null;
+
+		formElement.appendChild(Component.create(type, item).element);
+	}
+
+	formElement.appendChild(document.createElement("button")).textContent = "Submit";
+}
+
+generate(JSON.stringify({
+}));
 
 </script>
 
