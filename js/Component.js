@@ -72,15 +72,9 @@ class Component {
 			listener({target: this, data: eventData});
 	}
 
-	_applyChangeListener(element) {
-		element.addEventListener("change", event => {
+	_applyValueChangeListener(eventName, element) {
+		element.addEventListener(eventName, event => {
 			this._dispatchEventToListeners(Component.Event.ValueChanged, this.value);
-		});
-	}
-
-	_applyInputListener(element) {
-		element.addEventListener("input", event => {
-			this._dispatchEventToListeners(Component.Event.ValueInput, this.value);
 		});
 	}
 
@@ -95,5 +89,4 @@ class Component {
 
 Component.Event = {
 	ValueChanged: "component-value-changed",
-	ValueInput: "component-value-input",
 };

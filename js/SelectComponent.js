@@ -19,7 +19,7 @@ class SelectComponent extends Component {
 
 		data.options = null;
 
-		this._applyChangeListener(this._selectElement);
+		this._applyValueChangeListener("change", this._selectElement);
 		this._applyAttributes(this._selectElement, data);
 	}
 

@@ -18,7 +18,7 @@ class TickComponent extends Component {
 
 			let inputElement = (labelElement || this._inputContainer).appendChild(document.createElement("input"));
 			inputElement.type = type;
-			this._applyChangeListener(inputElement);
+			this._applyValueChangeListener("change", inputElement);
 			this._applyAttributes(inputElement, option);
 
 			return inputElement;

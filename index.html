@@ -17,11 +17,28 @@ function generate(string) {
 	formElement.setAttribute("method", json.method);
 	formElement.setAttribute("enctype", "multipart/form-data");
 
+	let components = [];
 	for (let item of json.items) {
 		let type = item.type;
 		item.type = null;
 
-		formElement.appendChild(Component.create(type, item).element);
+		let condition = item.condition;
+		item.condition = null;
+
+		let component = Component.create(type, item);
+
+		if (condition && !isNaN(condition.index)) {
+			let conditionComponent = components[condition.index];
+			conditionComponent.addEventListener(Component.Event.ValueChanged, event => {
+				if (JSON.stringify(conditionComponent.value) === JSON.stringify(condition.value))
+					conditionComponent.element.insertAdjacentElement("afterend", component.element);
+				else
+					component.element.remove();
+			});
+		} else
+			formElement.appendChild(component.element);
+
+		components.push(component);
 	}
 
 	formElement.appendChild(document.createElement("button")).textContent = "Submit";
