@@ -12,7 +12,7 @@ function generate(string) {
 	if (!json)
 		return;
 
-	let formElement = document.body.appendChild(document.createElement("form"));
+	let formElement = document.createElement("form");
 	formElement.setAttribute("action", json.action);
 	formElement.setAttribute("method", json.method);
 	formElement.setAttribute("enctype", "multipart/form-data");
@@ -42,10 +42,12 @@ function generate(string) {
 	}
 
 	formElement.appendChild(document.createElement("button")).textContent = "Submit";
+
+	return formElement;
 }
 
-generate(JSON.stringify({
-}));
+document.body.appendChild(generate(JSON.stringify({
+})));
 
 </script>
 

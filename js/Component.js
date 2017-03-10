@@ -18,28 +18,18 @@ class Component {
 	static create(type, data) {
 		switch (type) {
 		case "checkbox":
-			return new TickComponent("checkbox", data);
+		case "radio":
+			return new TickComponent(type, data);
 
 		case "date":
-			return new InputComponent("date", data);
-
 		case "email":
-			return new InputComponent("email", data);
-
 		case "file":
-			return new InputComponent("file", data);
-
-		case "radio":
-			return new TickComponent("radio", data);
-
 		case "range":
-			return new InputComponent("range", data);
+		case "url":
+			return new InputComponent(type, data);
 
 		case "select":
 			return new SelectComponent(data);
-
-		case "url":
-			return new InputComponent("url", data);
 
 		default:
 			return null;
