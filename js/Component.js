@@ -1,4 +1,4 @@
-class Component {
+export default class Component {
 	constructor(data) {
 		this._listeners = new Map;
 
@@ -13,27 +13,6 @@ class Component {
 
 		this._inputContainer = this._element.appendChild(document.createElement("div"));
 		this._inputContainer.classList.add("input-container");
-	}
-
-	static create(type, data) {
-		switch (type) {
-		case "checkbox":
-		case "radio":
-			return new TickComponent(type, data);
-
-		case "date":
-		case "email":
-		case "file":
-		case "range":
-		case "url":
-			return new InputComponent(type, data);
-
-		case "select":
-			return new SelectComponent(data);
-
-		default:
-			return null;
-		}
 	}
 
 	get element() { return this._element; }

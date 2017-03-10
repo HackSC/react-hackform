@@ -1,4 +1,6 @@
-class SelectComponent extends Component {
+import Component from "./Component.js";
+
+export default class SelectComponent extends Component {
 	constructor(data) {
 		super(data);
 

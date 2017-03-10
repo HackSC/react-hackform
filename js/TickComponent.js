@@ -1,4 +1,6 @@
-class TickComponent extends Component {
+import Component from "./Component.js";
+
+export default class TickComponent extends Component {
 	constructor(type, data) {
 		super(data);
 

@@ -1,11 +1,32 @@
 <body>
 
-<script src="js/Component.js"></script>
-<script src="js/InputComponent.js"></script>
-<script src="js/SelectComponent.js"></script>
-<script src="js/TickComponent.js"></script>
+<script type="module">
 
-<script>
+import Component from "./js/Component.js";
+import InputComponent from "./js/InputComponent.js";
+import SelectComponent from "./js/SelectComponent.js";
+import TickComponent from "./js/TickComponent.js";
+
+function createComponent(type, data) {
+	switch (type) {
+	case "checkbox":
+	case "radio":
+		return new TickComponent(type, data);
+
+	case "date":
+	case "email":
+	case "file":
+	case "range":
+	case "url":
+		return new InputComponent(type, data);
+
+	case "select":
+		return new SelectComponent(data);
+
+	default:
+		return null;
+	}
+}
 
 function generate(string) {
 	let json = JSON.parse(string);
@@ -25,7 +46,7 @@ function generate(string) {
 		let condition = item.condition;
 		item.condition = null;
 
-		let component = Component.create(type, item);
+		let component = createComponent(type, item);
 
 		if (condition && !isNaN(condition.index)) {
 			let conditionComponent = components[condition.index];
