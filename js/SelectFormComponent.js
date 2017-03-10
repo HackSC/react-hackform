@@ -1,6 +1,6 @@
-import Component from "./Component.js";
+import FormComponent from "./FormComponent.js";
 
-export default class SelectComponent extends Component {
+export default class SelectFormComponent extends FormComponent {
 	constructor(data) {
 		super(data);
 

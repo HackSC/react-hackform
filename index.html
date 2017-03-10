@@ -2,26 +2,26 @@
 
 <script type="module">
 
-import Component from "./js/Component.js";
-import InputComponent from "./js/InputComponent.js";
-import SelectComponent from "./js/SelectComponent.js";
-import TickComponent from "./js/TickComponent.js";
+import FormComponent from "./js/FormComponent.js";
+import InputFormComponent from "./js/InputFormComponent.js";
+import SelectFormComponent from "./js/SelectFormComponent.js";
+import TickFormComponent from "./js/TickFormComponent.js";
 
 function createComponent(type, data) {
 	switch (type) {
 	case "checkbox":
 	case "radio":
-		return new TickComponent(type, data);
+		return new TickFormComponent(type, data);
 
 	case "date":
 	case "email":
 	case "file":
 	case "range":
 	case "url":
-		return new InputComponent(type, data);
+		return new InputFormComponent(type, data);
 
 	case "select":
-		return new SelectComponent(data);
+		return new SelectFormComponent(data);
 
 	default:
 		return null;
@@ -50,7 +50,7 @@ function generate(string) {
 
 		if (condition && !isNaN(condition.index)) {
 			let conditionComponent = components[condition.index];
-			conditionComponent.addEventListener(Component.Event.ValueChanged, event => {
+			conditionComponent.addEventListener(FormComponent.Event.ValueChanged, event => {
 				if (JSON.stringify(conditionComponent.value) === JSON.stringify(condition.value))
 					conditionComponent.element.insertAdjacentElement("afterend", component.element);
 				else

@@ -1,6 +1,6 @@
-import Component from "./Component.js";
+import FormComponent from "./FormComponent.js";
 
-export default class InputComponent extends Component {
+export default class InputFormComponent extends FormComponent {
 	constructor(type, data) {
 		super(data);
 

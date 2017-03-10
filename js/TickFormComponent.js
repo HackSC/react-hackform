@@ -1,6 +1,6 @@
-import Component from "./Component.js";
+import FormComponent from "./FormComponent.js";
 
-export default class TickComponent extends Component {
+export default class TickFormComponent extends FormComponent {
 	constructor(type, data) {
 		super(data);
 

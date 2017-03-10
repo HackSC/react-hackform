@@ -1,9 +1,9 @@
-export default class Component {
+export default class FormComponent {
 	constructor(data) {
 		this._listeners = new Map;
 
 		this._element = document.createElement("div");
-		this._element.classList.add("component");
+		this._element.classList.add("form-component");
 
 		if (data.description) {
 			this._element.appendChild(document.createElement("p")).textContent = data.description;
@@ -43,7 +43,7 @@ export default class Component {
 
 	_applyValueChangeListener(eventName, element) {
 		element.addEventListener(eventName, event => {
-			this._dispatchEventToListeners(Component.Event.ValueChanged, this.value);
+			this._dispatchEventToListeners(FormComponent.Event.ValueChanged, this.value);
 		});
 	}
 
@@ -56,6 +56,6 @@ export default class Component {
 	}
 }
 
-Component.Event = {
+FormComponent.Event = {
 	ValueChanged: "component-value-changed",
 };
